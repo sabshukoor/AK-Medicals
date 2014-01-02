@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>A.K Medicals</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link href="js/slideshow.css" rel="stylesheet" type="text/css" />
+<link href="images/icon.ico" rel="shortcut icon" />
+<script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript">
+
+/*** 
+    Simple jQuery Slideshow Script
+    Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
+***/
+
+function slideSwitch() {
+    var $active = $('#slideshow IMG.active');
+
+    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+    // use this to pull the images in the order they appear in the markup
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+
+    // uncomment the 3 lines below to pull the images in random order
+    
+    // var $sibs  = $active.siblings();
+    // var rndNum = Math.floor(Math.random() * $sibs.length );
+    // var $next  = $( $sibs[ rndNum ] );
+
+
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+    setInterval( "slideSwitch()", 4000 );
+});
+
+</script>
+
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+<script>
+function initialize()
+{
+var mapProp = {
+  center:new google.maps.LatLng(12.956691,77.71489),
+  zoom:20,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+function MM_validateForm() { //v4.0
+  if (document.getElementById){
+    var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+    for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+      if (val) { nm=val.name; if ((val=val.value)!="") {
+        if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+          if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+        } else if (test!='R') { num = parseFloat(val);
+          if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+          if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+            min=test.substring(8,p); max=test.substring(p+1);
+            if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+      } } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
+    } if (errors) alert('The following error(s) occurred:\n'+errors);
+	else
+	 alert("Your details has been sent successfully!");
+    document.MM_returnValue = (errors == '');
+} }
+</script>
+
+</head>
+
+<body>
+<div id="wrapper">
+<!--HEADER--->
+  <div id="header">
+   <div id="logo">
+    <a href="index.html"><img src="images/logo.jpg" /></a>
+   </div>
+   <div id="phone">
+     <img src="images/phone.jpg" alt="" />
+    </div>
+ 
+   <div id="menu">
+    <ul id="nav">
+     <li><a href="index.html">Home</a></li>
+     <li><a href="products.html">Products</a></li>
+     <li><a href="services.html">Services</a></li>
+     <li><a href="about_us.html">About Us</a></li>
+     <li><a href="doctors.html">Doctors & Clinics</a></li>
+     <li class="active"><a style="color:#FFF;padding-left:5px" href="contact.html">Contact Us</a></li>
+    </ul>
+   </div>
+  </div>
+  
+  <div id="banner">
+    <div id="slideshow">
+     <img src="images/slides/s1.jpg" alt="">
+     <img src="images/slides/s3.jpg" alt="">
+     <img src="images/slides/s2.jpg" alt="">
+    </div>
+  </div>
+  
+  <div id="content">
+    <div id="heading">Contact Us</div>
+    <div id="dot" style="width:132px;"></div>
+    <div id="contact_left">
+     <form action="contact-form-handler.php" method="post" onsubmit="MM_validateForm('name','','R','email','','RisEmail','phoneno','','RisNum','message','','R');return document.MM_returnValue">
+      <table height="306" border="0">
+       <tr>
+        <td width="75">Name*</td>
+        <td width="23">::</td>
+        <td width="160"><label><input name="name" type="text" id="name" size="26" /></label></td>
+      </tr>
+      <tr>
+       <td>Email*</td>
+       <td>::</td>
+       <td><label><input name="email" type="text" id="email" size="26" /></label></td>
+      </tr>
+       <tr>
+       <td>Phone*</td>
+       <td>::</td>
+       <td><label><input name="phoneno" type="text" id="phoneno" size="26" /></label></td>
+      </tr>
+      <tr>
+       <td>Address</td>
+       <td>::</td>
+       <td><label><textarea name="address" cols="20" rows="3"></textarea></label></td>
+      </tr>
+      <tr>
+       <td>Message*</td>
+       <td>::</td>
+       <td><label><textarea name="message" cols="20" rows="3" id="message"></textarea></label></td>
+      </tr>
+      <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td><table border="0">
+        <tr>
+         <td><input type="submit" value="Submit" style="width:60px;"/></td>
+         <td>&nbsp;</td>
+         <td><input type="reset" value="Reset" style="width:60px;"/></td>
+        </tr>
+       </table></td>
+      </tr>
+     </table>
+    </form>
+   </div>
+   <div id="contact_middle">
+    <span style="font-size:20px;text-decoration:underline"> <strong>Address</strong></span><br /><br />
+    A.K Medicals<br />
+    #10 N.S Complex,<br />
+    Opp. Bank of Baroda<br />
+    Arvind Avenue Road,<br />
+    Kundalahalli Gate,<br />
+    Marthahalli,Bangalore-37<br /><br />
+    <strong>Mob&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</strong>9980596877<br />
+    <strong>Phone&nbsp;:&nbsp;</strong>42050366 
+    <strong>Email&nbsp;&nbsp;:&nbsp;</strong>aslamkhan1710@gmail.com<br /></div>
+   <div id="contact_left"><span style="font-size:20px;text-decoration:underline"> <strong>Location</strong></span>
+    <div id="googleMap"></div>
+    </div>
+   </div>
+  <div class="cleaner"></div>  
+   <!--FOOTER-->
+  <div id="footer">
+   <div id="copyright">&copy;&nbsp;Copyright&nbsp;2013 A.K Medicals &nbsp; | &nbsp; All Rights Reserved</div>
+  </div> 
+ </div>
+</body>
+</html>
